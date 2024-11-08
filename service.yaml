@@ -1,4 +1,3 @@
-# service file
 apiVersion: v1
 kind: Service
 metadata:
