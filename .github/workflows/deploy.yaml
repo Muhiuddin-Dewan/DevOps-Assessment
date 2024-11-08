@@ -1,0 +1,21 @@
+name: Deploy to AKS
+
+on:
+  push:
+    paths:
+      - 'deployment.yaml'
+      - 'hpa.yaml'
+      - 'service.yaml'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f hpa.yaml
+          kubectl apply -f service.yaml
